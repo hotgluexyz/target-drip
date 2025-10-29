@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "target-drip",
+            "type": "debugpy",
+            "request": "launch",
+            "justMyCode": false,
+            "program": "../target_drip/target.py",
+            "cwd": "/Users/areeb/Documents/Projects/target-drip/.secrets",
+            "args": [
+                "--config",
+                "config.json",
+                "<",
+                "data.singer",
+                ">",
+                "target-state.json"
+            ],
+            "console": "integratedTerminal",
+            "python": "/Users/areeb/Documents/Projects/target-drip/.venv/bin/python"
+        }
+    ]
+}
