@@ -7,6 +7,7 @@ from target_hotglue.target import TargetHotglue
 
 from target_drip.sinks import (
     EventsSink,
+    SubscribersSink,
 )
 
 
@@ -25,7 +26,7 @@ class TargetDrip(TargetHotglue):
         self.config_file = config[0]
         super().__init__(config, parse_env_config, validate_config, state)
 
-    SINK_TYPES = [EventsSink]
+    SINK_TYPES = [EventsSink, SubscribersSink]
     MAX_PARALLELISM = 1
 
     config_jsonschema = th.PropertiesList(

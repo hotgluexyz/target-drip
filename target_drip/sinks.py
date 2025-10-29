@@ -26,3 +26,22 @@ class EventsSink(DripSink):
         response = self.request_api("POST", request_data=events) # returns 204 no content
         id = record.get("id", record.get("email"))
         return id, response.ok, dict()
+
+class SubscribersSink(DripSink):
+    """Drip target sink class."""
+    name = "Subscribers"
+    
+    @property
+    def endpoint(self) -> str:
+        return f"/{self.config.get('account_id')}/subscribers"
+    
+    def preprocess_record(self, record: dict, context: dict) -> dict:
+        return record
+    
+    def upsert_record(self, record: dict, context: dict):
+        subscribers = {
+            "subscribers": [record]
+        }
+        response = self.request_api("POST", request_data=subscribers) # returns 204 no content
+        id = response.json().get("subscribers")[0].get("id")
+        return id, response.ok, dict()
